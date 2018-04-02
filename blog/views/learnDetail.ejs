@@ -1,0 +1,197 @@
+<%- include('header') %>
+<%- include('components/nav')  %>
+<article>
+	
+	<div class="container">
+		<h2 class="ctitle"><b><%- data[0].title %></b> <span>最美不是下雨天，是曾与你走过雨的屋檐</span></h2>
+		<div class="detail-box">
+			<p class="title">
+				<%- data[0].title %>
+			</p>
+			<p class="detail-time">浏览次数:5200 　 更新时间:2011-02-21 03:36:57　发布人：管理员</p>
+			<div class="detatil">
+				<%- data[0].content %>
+			</div>
+		</div>
+		<!--<script type="text/x-dot-template" id="detail">
+				{{= it[0].content}}
+		</script>
+		<script>
+			$.post("/learnDetail",{id:GetQueryString("id")},function(data){
+				var interText = doT.template($("#detail").text());
+			    $(".detatil").html(interText(data.data));
+			},"json")
+		</script>-->
+		<div class="gbook">
+			<div class="about">
+				<div class="tips">*登录过后才能评论</div>
+				<div class="comment">
+					<div class="com_form">
+						<form method="post" enctype="multipart/form-data">
+							<textarea class="input" id="saytext" name="saytext"></textarea>
+							<p>
+								<input type="button" class="sub_btn" value="提交">
+								<span class="emotion">☺</span>
+							</p>
+						</form>
+					</div>
+				</div>
+				<div class="comment-list">
+				</div>
+				<script type="text/x-dot-template" id="comment">
+						{{ for(var i = 0; i < it.content.length; i ++){ }}
+						<div class="pl">
+							<div class="tx">
+								<a href="javascript:;"><img src="images/man.png"></a>
+							</div>
+							<div class="info">
+								<div class="plbg">
+									<div class="f z13"> {{= it.author}}</div>
+									<div class="r"> <span class="z13">{{= it.content[i].created}}</span></div>
+								</div>
+								<div class="plul">
+									<p>{{= it.content[i].content }}</p>
+									{{ for(var j = 0; j < it.content[i].reply.length; j++){ }}
+										<div class="pl p2">
+											<div class="tx">
+												<a href="javascript:;">
+													{{ if(it.sex == "f"){ }}
+														<img src="images/woman.png">
+													{{}else{}}
+														<img src="images/man.png">
+													{{}}}
+												</a>
+											</div>
+											<div class="info">
+												<div class="plbg">
+													<div class="f z13">{{= it.content[i].reply[j].author }}</div>
+													<div class="r"> <span class="z13">{{= it.content[i].reply[j].time }}</span></div>
+												</div>
+												<div class="plul">
+													<p>{{= it.content[i].reply[j].content }}</p>
+												</div>
+											</div>
+										</div>
+									{{}}}
+									<a class="reply" sayingId={{= it.content[i]._id}} class="javascript:;">回复</a>
+									<!--回复-->
+									<div class="comment" style="display: none;">
+										<div class="com_form">
+											<form method="post" enctype="multipart/form-data">
+												<textarea class="input" id="aa" name="saytext"></textarea>
+												<p>
+													<input type="button" class="del_btn" value="取消回复">
+													<input type="button" class="tj_btn" value="提交回复">
+												</p>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						{{}}}
+				</script>
+				<script>
+					$(function(){
+						$.post("/learnFind",{id:GetQueryString("id")},function(data){
+							console.log(data)
+							var interText = doT.template($("#comment").text());
+						    $(".comment-list").html(interText(data.data));
+						    //出现回复框
+						    var sayingId = "";
+						    $(".reply").click(function(){
+						    	sayingId = $(this).attr("sayingId");
+								console.log($(this).siblings(".comment").show())
+							})
+						    //取消回复
+						    $(".del_btn").click(function(){
+						    	$(this).parents(".comment").hide();
+						    })
+						    //回复
+						    $(".tj_btn").click(function() {
+								var str = $(this).parent().siblings("textarea").val();
+								console.log(str)
+								//提交回复
+								$.post("saying", {
+									"content": str,
+									"sayingId" : sayingId,
+									"articleId" : GetQueryString("id"),
+									"type" : "replay"
+								}, function(data) {
+									if(data.msg == "没有登录") {
+										$(".tips").show();
+										return;
+									}else if(data.err == 0){
+										window.location.reload();
+									}
+								}, "json")
+							});
+						},"json")
+					})
+					
+				</script>
+			</div>
+		</div>
+		</aside>
+</article>
+
+<footer> Design by 黄照阳
+	<a href="/">备案中</a>
+</footer>
+
+<script>
+	if(!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {
+		(function() {
+			window.scrollReveal = new scrollReveal({
+				reset: true
+			});
+		})();
+	};
+	//提交留言
+	$(function() {
+		$('.emotion').qqFace({
+			assign: 'saytext',
+			path: 'arclist/' //表情存放的路径
+		});
+		$(".sub_btn").click(function() {
+			var str = $("#saytext").val();
+			//提交留言
+			$.post("saying", {
+				"content": replace_em(str),
+				"articleId" : GetQueryString("id"),
+				"type" : "saying"
+			}, function(data) {
+				if(data.msg == "没有登录") {
+					$(".tips").show();
+					return;
+				}else if(data.err == 1){
+					$(".tips").html(data.msg);
+					$(".tips").show();
+				}else if(data.err == 0){
+					window.location.reload();
+				}
+			}, "json")
+		});
+	});
+	
+	
+	//把图片的代码替换成图片
+	function replace_em(str) {
+		str = str.replace(/\</g, '&lt;');
+		str = str.replace(/\>/g, '&gt;');
+		str = str.replace(/\n/g, '<br/>');
+		str = str.replace(/\[em_([0-9]*)\]/g, '<img src="arclist/$1.gif" border="0" />');
+		return str;
+	}
+	//获取地址栏的参数
+	function GetQueryString(name)
+	{
+	　　var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	　　var r = window.location.search.substr(1).match(reg);
+	　　if(r!=null) return unescape(r[2]);
+	   return null;
+	}
+</script>
+<script src="js/jquery.qqFace.js"></script>
+<script src="js/jquery-browser.js"></script>
+<%- include('footer') %>

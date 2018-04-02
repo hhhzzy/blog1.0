@@ -1,0 +1,66 @@
+<div class="layui-side layui-bg-black">
+	<!-- 左侧用户头像 -->
+	<div class="user-photo">
+		<a class="img" title="我的头像"><img src="images/face.jpg" class="userAvatar"></a>
+		<p>你好！<span class="userName">黄照阳</span>, 欢迎登录</p>
+	</div>
+	<!-- 左侧搜索 -->
+	<div class="layui-form component">
+		<select name="search" id="search" lay-search="" lay-filter="searchPage">
+			<option value="">搜索页面或功能</option>
+			<option value="1">layer</option>
+			<option value="2">form</option>
+		</select><div class="layui-form-select"><div class="layui-select-title"><input type="text" placeholder="搜索页面或功能" value="" class="layui-input"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit"><dd lay-value="" class="layui-select-tips">搜索页面或功能</dd><dd lay-value="1" class="">layer</dd><dd lay-value="2" class="">form</dd></dl></div>
+		<i class="layui-icon"></i>
+	</div>
+	<div class="layui-side-scroll">
+		<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+		<ul class="layui-nav layui-nav-tree" lay-filter="test">
+			<li class="layui-nav-item <%= activeNav("/main") %>">
+				<a href="/main" class="title ">
+					<i class="layui-icon" data-icon="&#xe68e;">&#xe68e;</i>
+					<cite>后台首页</cite>
+				</a>
+			</li>
+			<li class="layui-nav-item <%= navItemed("/article") %>">
+				<a href="javascript:;">
+					<i class="layui-icon" data-icon="&#xe60a;">&#xe60a;</i>
+					<cite>文章管理</cite>
+				</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a class="<%= activeNav("/articleList") %>" href="/articleList">文章列表</a>
+					</dd>
+					<dd>
+						<a class="<%= activeNav("/articleAdd") %>" href="/articleAdd">文章新增</a>
+					</dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item <%= navItemed("/blog") %>">
+				<a href="javascript:;">
+					<i class="layui-icon" data-icon="&#xe60a;">&#xe60a;</i>
+					<cite>博客管理</cite>
+				</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a class="<%= activeNav("/blogAdd") %>" href="/blogAdd">博客信息</a>
+					</dd>
+				</dl>
+			</li>
+			<li class="layui-nav-item <%= navItemed("/learn") %>">
+				<a href="javascript:;">
+					<i class="layui-icon" data-icon="&#xe60a;">&#xe60a;</i>
+					<cite>学无止境</cite>
+				</a>
+				<dl class="layui-nav-child">
+					<dd>
+						<a class="<%= activeNav("/learnList") %>" href="/learnList">学海无涯</a>
+					</dd>
+					<dd>
+						<a class="<%= activeNav("/learnAdd") %>" href="/learnAdd">学无止境</a>
+					</dd>
+				</dl>
+			</li>
+		</ul>
+	</div>
+</div>

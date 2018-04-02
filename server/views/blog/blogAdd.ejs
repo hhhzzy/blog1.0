@@ -1,0 +1,112 @@
+<%- include('../header') %>
+<div class="layui-layout layui-layout-admin">
+	<%- include('../components/all-header') %>
+	<!-- 左侧导航 -->
+	<%- include('../components/nav-slider') %>
+	<div class="layui-body">
+		<!-- 内容主体区域 -->
+		<div class="layui-layer-title" style="cursor: move;">博客信息</div>
+		<div class=" layui-row">
+					<div class="layui-col-xs8">
+						<form method="post" class="layui-form layui-row layui-col-space10">
+							<div class="layui-col-space10">
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">博客踪迹</label>
+									<div class="layui-input-block">
+										<input placeholder="博客时间" type="text" class="layui-input" id="blogTime">
+									</div>
+								</div>
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">now work</label>
+									<div class="layui-input-block">
+										<textarea name="timeWork" id="timeWork" placeholder="now work" class="layui-textarea timeWork"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="layui-form-item layui-center">
+								<a class="layui-btn layui-btn-sm" lay-filter="addTimeLine" lay-submit><i class="layui-icon">&#xe609;新增时间线 </a>
+							</div>
+						</form>	
+						<form method="post">
+							<div class="layui-form-item magb0">
+								<label class="layui-form-label">座右铭</label>
+								<div class="layui-input-block">
+									<textarea class="layui-textarea layui-hide" name="motto" lay-verify="content" id="motto_content"><%= msg.motto %></textarea>
+									<div class="layui-layedit">
+										<div class="layui-unselect layui-layedit-tool"><i class="layui-icon layedit-tool-b" title="加粗" lay-command="Bold" layedit-event="b" "=" "></i><i class="layui-icon layedit-tool-i " title="斜体 " lay-command="italic " layedit-event="i " "=""></i><i class="layui-icon layedit-tool-u" title="下划线" lay-command="underline" layedit-event="u" "=" "></i><i class="layui-icon layedit-tool-d " title="删除线 " lay-command="strikeThrough " layedit-event="d " "=""></i><span class="layedit-tool-mid"></span><i class="layui-icon layedit-tool-left" title="左对齐" lay-command="justifyLeft" layedit-event="left" "=" "></i><i class="layui-icon layedit-tool-center " title="居中对齐 " lay-command="justifyCenter " layedit-event="center " "=""></i><i class="layui-icon layedit-tool-right" title="右对齐" lay-command="justifyRight" layedit-event="right" "=" "></i><span class="layedit-tool-mid "></span><i class="layui-icon layedit-tool-link " title="插入链接 " layedit-event="link " "=""></i><i class="layui-icon layedit-tool-unlink layui-disabled" title="清除链接" lay-command="unlink" layedit-event="unlink" "=" "></i><i class="layui-icon layedit-tool-face " title="表情 " layedit-event="face " "=""></i><i class="layui-icon layedit-tool-image" title="图片" layedit-event="image"><input type="file" name="file"></i></div>
+										<div class="layui-layedit-iframe"><iframe id="LAY_layedit_1" name="LAY_layedit_1" textarea="news_content" frameborder="0" style="height: 535px;"></iframe></div>
+									</div>
+								</div>
+							</div>
+							<div class="layui-col-space10">
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">网站信息</label>
+									<div class="layui-input-block">
+										<input value="<%= msg.host %>" placeholder="域名" type="text" name="host" id="host" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">服务器</label>
+									<div class="layui-input-block">
+										<input value="<%= msg.server %>" placeholder="服务器" type="text" name="server" id="server" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">后台语言</label>
+									<div class="layui-input-block">
+										<input value="<%= msg.serverL %>" placeholder="后台语言" type="text" name="serverL" id="serverL" class="layui-input">
+									</div>
+								</div>
+							</div>
+							<div class="layui-center">
+								<a class="layui-btn layui-btn-sm" lay-filter="addBlog" lay-submit><i class="layui-icon">&#xe609;提交 </a>
+							</div>
+						</form>
+					</div>			
+					<div class="layui-col-xs4">
+						<div class="layui-form-item magt3">
+								<label class="layui-form-label">博客时间线</label>
+								<div class="layui-input-block">
+									<ul class="layui-timeline blog-timeline-ul">
+										<% for(var i = 0; i < msg.timeLine.length; i ++){ %>
+									    <li class="layui-timeline-item">
+										    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+										    <div class="layui-row">
+											    <div class="layui-timeline-content layui-text layui-col-xs8">
+											      <h3 class="layui-timeline-title"><%= dateFormat("ymd",msg.timeLine[i].blogTime) %></h3>
+											      <p>
+											        <%= msg.timeLine[i].timeWork %>
+											      </p>
+											    </div>
+											    <div class="layui-col-xs4">
+											    	<input type="hidden" class="timeId" value="<%= msg.timeLine[i].timeId %>" />
+											    	<input type="hidden" class="timeLine" value="<%= msg.timeLine[i].blogTime %>" />
+											    	<input type="hidden" class="timeWork" value="<%= msg.timeLine[i].timeWork %>" />
+											   	 	<button class="update-timeLine layui-btn layui-btn-xs">修改</button>
+											   	 	<a href="/deleteTimeLine?id=<%= msg.timeLine[i].timeId %>" class="layui-btn  layui-btn-xs layui-btn-danger">删除</a>
+											    </div>
+										    </div>
+										</li>
+										<% }%>
+									    <li class="layui-timeline-item">
+										    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+										    <div class="layui-timeline-content layui-text">
+										      <div class="layui-timeline-title">过去</div>
+										    </div>
+									    </li>
+									</ul>
+								</div>
+							</div>
+					</div>
+			
+			</div>
+	
+	</div>
+	<!-- 底部 -->
+	<div class="layui-footer footer">
+		<p><span>copyright @2018 黄照阳</span>　</p>
+	</div>
+</div>
+<script src="js/blog/blogAdd.js"></script>
+<%- include('../footer') %>
+<%- include('../components/errNotice') %>

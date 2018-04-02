@@ -1,0 +1,24 @@
+<% if(error){ %>
+	<script>
+		var message = "<%= error %>";//flash中间件的内容
+		var msg = message == "" ? messageTwo:message;
+		layui.use(['form','layer','jquery'],function(){
+			layer.open({
+			  title: '提示信息'
+			  ,content: message
+			}); 
+		})
+	</script>
+<% } %>
+<% if(success){ %>
+	<script>
+		var message = "<%= success %>";//flash中间件的内容
+		var msg = message == "" ? messageTwo:message;
+		layui.use(['form','layer','jquery'],function(){
+			layer.open({
+			  title: '提示信息'
+			  ,content: message
+			}); 
+		})
+	</script>
+<% } %>

@@ -1,0 +1,23 @@
+<%- include('header') %>
+<%- include('components/nav')  %>
+<article>
+	<div class="container">
+		<h2 class="ctitle"><b><%- data.data.articleName %></b> <span>最美不是下雨天，是曾与你走过雨的屋檐</span></h2>
+		<div class="detail-box">
+			<p class="title">
+				<%- data.data.articleName %>
+			</p>
+			<p class="detail-time">浏览次数:5200 　 更新时间:2011-02-21 03:36:57　发布人：管理员</p>
+			<div class="detatil">
+				<%- data.data.content %>
+			</div>
+		</div>
+</article>
+
+<footer> Design by 黄照阳
+	<a href="/">备案中</a>
+</footer>
+
+<script src="js/jquery.qqFace.js"></script>
+<script src="js/jquery-browser.js"></script>
+<%- include('footer') %>

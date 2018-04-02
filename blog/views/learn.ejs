@@ -1,0 +1,156 @@
+<%- include('header') %>
+<%- include('components/nav')  %>
+<article>
+  <div class="container">
+    <h2 class="ctitle"><b>学无止境</b> <span>成功路上没有捷径</span></h2>
+    <div class="rnav">
+      <ul>
+        <!--<li><a href="/jstt/bj/">JavaScript</a></li>
+        <li><a href="http://www.ip3q.com/">node</a></li>
+        <li><a href="/jstt/css3/">mongodb</a></li>
+        <li><a href="/jstt/web/">vue</a></li>
+        <li><a href="/news/jsex/">CSS3丨HTML5</a></li>
+        <li><a href="/jstt/t/">php</a></li>-->
+      
+      <script type="text/x-dot-template" id="tag">
+      	{{ for(var i = 0; i < it.length; i ++){ }}
+      	 		<li><a href="/learnDetail">{{= it[i].content }}</a></li>
+      	{{}}}
+      </script>
+      </ul>
+      <script>
+      		//初始化加载数据
+						$.ajax({
+								url:"http://localhost:3002/api/learn/learnType",
+								type:"post",
+						 		xhrFields: {
+						       withCredentials: true //默认cookie被传回服务器
+						    },
+						    crossDomain: true,
+						    dataType:"json",
+								success:function(data){
+									  var interText = doT.template($("#tag").text());
+			              $(".rnav ul").html(interText(data.data));
+								},
+								err:function(err){
+										console.log(err)
+								}
+						})
+      </script>
+    </div>
+    <ul class="cbp_tmtimeline">
+      <!--<li>
+        <time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>少时诵诗书</h2>
+          <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>范德萨发生的范德萨发范德萨范德萨范德萨范德萨发生的范德萨范德萨范德萨发房贷是否松动 防守打法都是范德萨发生的范德萨发...</p>
+          <a href="/" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+      </li>
+      <li>
+        <time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>少时诵诗书</h2>
+          <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>范德萨发生的范德萨发范德萨范德萨范德萨范德萨发生的范德萨范德萨范德萨发房贷是否松动 防守打法都是范德萨发生的范德萨发...</p>
+          <a href="/" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+      </li>
+      <li>
+        <time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>少时诵诗书</h2>
+          <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>范德萨发生的范德萨发范德萨范德萨范德萨范德萨发生的范德萨范德萨范德萨发房贷是否松动 防守打法都是范德萨发生的范德萨发...</p>
+          <a href="/" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+      </li>
+      <li>
+        <time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>少时诵诗书</h2>
+          <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>范德萨发生的范德萨发范德萨范德萨范德萨范德萨发生的范德萨范德萨范德萨发房贷是否松动 防守打法都是范德萨发生的范德萨发...</p>
+          <a href="/" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+      </li>
+      <li>
+        <time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>少时诵诗书</h2>
+          <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>范德萨发生的范德萨发范德萨范德萨范德萨范德萨发生的范德萨范德萨范德萨发房贷是否松动 防守打法都是范德萨发生的范德萨发...</p>
+          <a href="/" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+      </li>
+      <li>
+        <time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>少时诵诗书</h2>
+          <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>范德萨发生的范德萨发范德萨范德萨范德萨范德萨发生的范德萨范德萨范德萨发房贷是否松动 防守打法都是范德萨发生的范德萨发...</p>
+          <a href="/" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+      </li>
+      <li>
+        <time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>少时诵诗书</h2>
+          <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>范德萨发生的范德萨发范德萨范德萨范德萨范德萨发生的范德萨范德萨范德萨发房贷是否松动 防守打法都是范德萨发生的范德萨发...</p>
+          <a href="/" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+      </li>
+      <li>
+        <time class="cbp_tmtime"><span>08-08</span> <span>2017</span></time>
+        <div class="cbp_tmicon"></div>
+        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+          <h2>少时诵诗书</h2>
+          <p><span class="blogpic"><a href="/"><img src="images/t03.jpg"></a></span>范德萨发生的范德萨发范德萨范德萨范德萨范德萨发生的范德萨范德萨范德萨发房贷是否松动 防守打法都是范德萨发生的范德萨发...</p>
+          <a href="/" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+      </li>
+    	-->
+    	<script type="text/x-dot-template" id="articleLi">
+      	{{ for(var i = 0; i < it.length; i ++){ }}
+      	 		<li>
+				        <time class="cbp_tmtime"><span>{{= new Date(it[i].created).getMonth()+1 +"-"+new Date(it[i].created).getDate()}}</span> <span>{{= new Date(it[i].created).getFullYear()}}</span></time>
+				        <div class="cbp_tmicon"></div>
+				        <div class="cbp_tmlabel" data-scroll-reveal="enter right over 1s" >
+				          <h2>{{= it[i].title}}</h2>
+				          <p>
+				          	{{= it[i].abstract}}
+				          </p>
+				          <a href="/learnDetail?id={{= it[i]._id }}" target="_blank" class="readmore">查看详细&gt;&gt;</a> </div>
+				    </li>
+    
+      	{{}}}
+      </script>
+      <script>
+      			//初始化加载数据
+						$.ajax({
+								url:"http://localhost:3002/api/learn/learn",
+								type:"post",
+						 		xhrFields: {
+						       withCredentials: true //默认cookie被传回服务器
+						    },
+						    crossDomain: true,
+						    dataType:"json",
+								success:function(data){
+										console.log(data.data)
+
+									  var interText = doT.template($("#articleLi").text());
+			              $(".cbp_tmtimeline").html(interText(data.data));
+								},
+								err:function(err){
+										console.log(err)
+								}
+						})
+      </script>
+    </ul>
+   <!-- <div class="page"><a title="Total record"><b>107</b> </a><b>1</b><a href="/news/index_2.html">2</a><a href="/news/index_3.html">3</a><a href="/news/index_4.html">4</a><a href="/news/index_5.html">5</a><a href="/news/index_2.html">&gt;</a><a href="/news/index_5.html">&gt;&gt;</a></div>-->
+  </div>
+  </aside>
+</article>
+<footer> Design by 黄照阳 <a href="/">备案中</a> </footer>
+<script>
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+		(function(){
+			window.scrollReveal = new scrollReveal({reset: true});
+		})();
+	};
+</script> 
+<%- include('footer') %>

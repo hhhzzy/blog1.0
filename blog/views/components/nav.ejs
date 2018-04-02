@@ -1,0 +1,19 @@
+<header>
+  <div class="logo" data-scroll-reveal="enter right over 1s"><a href="/"><!--<img src="images/logo.png">-->my-blog</a></div>
+  <nav class="topnav" data-scroll-reveal="enter bottom over 1s after 1s">
+  		<a href="/main"><span>首页</span><span class="en">Home</span></a>
+  		<a target="_blank" href="/mine"><span>关于我</span><span class="en">About</span></a>
+  		<!--<a href="manshenghuo.html"><span>慢生活</span><span class="en">Life</span></a>-->
+  		<!--<a href="learn.html"><span>碎言碎语</span><span class="en">Doing</span></a>-->
+  		<a href="/learn"><span>学海无涯</span><span class="en">Learn</span></a>
+  		<a target="_blank" href="/saying"><span>给我留言</span><span class="en">Saying</span></a>
+  		<% if(user != null){ %>
+	  		<% if(user.name == "admin"){ %>
+	  			<a target="_blank" href="http://localhost:3002/"><span>后台登录</span><span class="en">Saying</span></a>
+	  		<% }else{ %>
+	  		<%}%>
+	  	<%}else{%>
+	  		<%}%>
+  </nav>
+</header>
+<%- include('nav-setting') %>

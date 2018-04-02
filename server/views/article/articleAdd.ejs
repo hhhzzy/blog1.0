@@ -1,0 +1,137 @@
+<%- include('../header') %>
+<div class="layui-layout layui-layout-admin">
+	<%- include('../components/all-header') %>
+	<!-- 左侧导航 -->
+	<%- include('../components/nav-slider') %>
+	<div class="layui-body">
+		<!-- 内容主体区域 -->
+		<div class="layui-layer-title" style="cursor: move;">添加文章</div>
+		<form method="post" class="layui-form layui-row layui-col-space10">
+			<div class="layui-col-md9 layui-col-xs12">
+				<div class="layui-row layui-col-space10">
+					<div class="layui-col-md9 layui-col-xs7">
+						<div class="layui-form-item magt3">
+							<label class="layui-form-label">文章标题</label>
+							<div class="layui-input-block">
+								<input type="text" value="<%= msg.articleName %>" name="articleName" class="layui-input articleName" lay-verify="articleName" placeholder="请输入文章标题">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">内容摘要</label>
+							<div class="layui-input-block">
+								<textarea name="abstract" placeholder="请输入内容摘要" class="layui-textarea abstract"><%= msg.abstract %></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="layui-col-md3 layui-col-xs5">
+						<div class="layui-upload-list thumbBox mag0 magt3">
+							<img id="<%= msg._id %>" src="<%= msg.path %>" lay-filter="thumbImg" class="layui-upload-img thumbImg">
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item magb0">
+					<label class="layui-form-label">文章内容</label>
+					<div class="layui-input-block">
+						<textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="news_content"><%= msg.content %></textarea>
+						<div class="layui-layedit">
+							<div class="layui-unselect layui-layedit-tool"><i class="layui-icon layedit-tool-b" title="加粗" lay-command="Bold" layedit-event="b" "=" "></i><i class="layui-icon layedit-tool-i " title="斜体 " lay-command="italic " layedit-event="i " "=""></i><i class="layui-icon layedit-tool-u" title="下划线" lay-command="underline" layedit-event="u" "=" "></i><i class="layui-icon layedit-tool-d " title="删除线 " lay-command="strikeThrough " layedit-event="d " "=""></i><span class="layedit-tool-mid"></span><i class="layui-icon layedit-tool-left" title="左对齐" lay-command="justifyLeft" layedit-event="left" "=" "></i><i class="layui-icon layedit-tool-center " title="居中对齐 " lay-command="justifyCenter " layedit-event="center " "=""></i><i class="layui-icon layedit-tool-right" title="右对齐" lay-command="justifyRight" layedit-event="right" "=" "></i><span class="layedit-tool-mid "></span><i class="layui-icon layedit-tool-link " title="插入链接 " layedit-event="link " "=""></i><i class="layui-icon layedit-tool-unlink layui-disabled" title="清除链接" lay-command="unlink" layedit-event="unlink" "=" "></i><i class="layui-icon layedit-tool-face " title="表情 " layedit-event="face " "=""></i><i class="layui-icon layedit-tool-image" title="图片" layedit-event="image"><input type="file" name="file"></i></div>
+							<div class="layui-layedit-iframe"><iframe id="LAY_layedit_1" name="LAY_layedit_1" textarea="news_content" frameborder="0" style="height: 535px;"></iframe></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md3 layui-col-xs12">
+				<blockquote class="layui-elem-quote title"><i class="seraph icon-caidan"></i> 分类目录</blockquote>
+				<div class="border category">
+					<div class="">
+						<p>
+							<input type="checkbox" name="news" title="新闻" lay-skin="primary" />
+						</p>
+						<p>
+							<input type="checkbox" name="goods" title="商品" lay-skin="primary" />
+						</p>
+						<p>
+							<input type="checkbox" name="notice" title="公告" lay-skin="primary" />
+						</p>
+						<p>
+							<input type="checkbox" name="images" title="图片" lay-skin="primary" />
+						</p>
+					</div>
+				</div>
+				<blockquote class="layui-elem-quote title magt10"><i class="layui-icon">&#xe609;</i> 发布</blockquote>
+				<div class="border">
+					<div class="layui-form-item">
+						<label class="layui-form-label"><i class="layui-icon"></i> 状　态</label>
+						<div class="layui-input-block newsStatus">
+							<select name="status" lay-verify="required">
+								<option value="0">保存草稿</option>
+								<option value="1">等待审核</option>
+							</select>
+							<div class="layui-unselect layui-form-select">
+								<div class="layui-select-title">
+									<input type="text" placeholder="请选择" value="保存草稿" readonly="" class="layui-input layui-unselect">
+									<i class="layui-edge"></i>
+								</div>
+								<dl class="layui-anim layui-anim-upbit" style="">
+									<dd lay-value="0" class="layui-this">保存草稿</dd>
+									<dd lay-value="1" class="">等待审核</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<!--<div class="layui-form-item">
+						<label class="layui-form-label"><i class="layui-icon"></i> 发　布</label>
+						<div class="layui-input-block">
+							<input type="radio" name="release" title="立即发布" lay-skin="primary" lay-filter="release" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon layui-anim-scaleSpring"></i><div>立即发布</div></div>
+							<input type="radio" name="release" title="定时发布" lay-skin="primary" lay-filter="release"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>定时发布</div></div>
+						</div>
+					</div>-->
+					<div class="layui-form-item releaseDate layui-hide">
+						<label class="layui-form-label"></label>
+						<div class="layui-input-block">
+							<input type="text" class="layui-input" id="release" placeholder="请选择日期和时间" readonly="" lay-key="1">
+						</div>
+					</div>
+					<div class="layui-form-item openness">
+						<label class="layui-form-label"><i class="seraph icon-look"></i> 公开度</label>
+						<div class="layui-input-block">
+							<input type="radio" name="openness" title="开放浏览" value="开放浏览" lay-skin="primary" checked <% if(msg.openness == "开放浏览"){%> checked <%}else{%> <%}%> lay-filter="openness">
+							<div class="layui-unselect layui-form-radio layui-form-radioed">
+								<i class="layui-anim layui-icon"></i>
+								<div>开放浏览</div>
+							</div>
+							<input type="radio" name="openness" title="私密浏览" value="私密浏览" lay-skin="primary" <% if(msg.openness == "私密浏览"){%> checked <%}else{%> <%}%> lay-filter="openness" >
+							<div class="layui-unselect layui-form-radio">
+								<i class="layui-anim layui-icon"></i>
+								<div>私密浏览</div>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item newsTop">
+						<label class="layui-form-label"><i class="seraph icon-zhiding"></i> 置　顶</label>
+						<div class="layui-input-block">
+							<input type="checkbox" name="newsTop" lay-skin="switch" <% if(msg.newsTop == "checked"){%> checked <%}else{%><%}%> lay-filter="newsTop" lay-text="是|否">
+							<div class="layui-unselect layui-form-switch" lay-skin="_switch">
+								<em>否</em>
+								<i></i>
+							</div>
+						</div>
+					</div>
+					<hr class="layui-bg-gray" />
+					<div class="layui-right">
+						<a class="layui-btn layui-btn-sm" lay-filter="addArticle" lay-submit><i class="layui-icon">&#xe609;</i><% if(msg){%> 修改 <%}else{%> 发布 <%}%></a>
+						<!--<a class="layui-btn layui-btn-primary layui-btn-sm" lay-filter="look" lay-submit>预览</a>-->
+					</div>
+				</div>
+			</div>
+		</form>
+
+	</div>
+	<!-- 底部 -->
+	<div class="layui-footer footer">
+		<p><span>copyright @2018 黄照阳</span>　</p>
+	</div>
+</div>
+<script src="js/article/articleAdd.js"></script>
+<%- include('../footer') %>
+<%- include('../components/errNotice') %>

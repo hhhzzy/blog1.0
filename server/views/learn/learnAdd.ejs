@@ -1,0 +1,141 @@
+<%- include('../header') %>
+<div class="layui-layout layui-layout-admin">
+	<%- include('../components/all-header') %>
+	<!-- 左侧导航 -->
+	<%- include('../components/nav-slider') %>
+	<div class="layui-body">
+		<!-- 内容主体区域 -->
+		<div class="layui-layer-title" style="cursor: move;">学无止境</div>
+		<div class=" layui-row">
+					<div class="layui-col-xs9 blog-right-bor">
+						<form method="post" class="layui-form layui-row layui-col-space10">
+							<div class="layui-col-space10">
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">标题</label>
+									<div class="layui-input-block">
+										<input value="<%= msg.title %>" placeholder="标题" type="text" class="layui-input" id="title">
+									</div>
+								</div>
+								<!--<div class="layui-form-item magt3">
+									<label class="layui-form-label"></label>
+									<div class="layui-input-block">
+										<textarea name="timeWork" id="timeWork" placeholder="now work" class="layui-textarea timeWork"></textarea>
+									</div>
+								</div>-->
+							</div>
+							<div class="layui-form-item">
+								<label class="layui-form-label">内容摘要</label>
+								<div class="layui-input-block">
+									<textarea name="abstract" placeholder="请输入内容摘要" class="layui-textarea abstract"><%= msg.abstract %></textarea>
+								</div>
+							</div>
+							<div class="layui-form-item magb0">
+								<label class="layui-form-label">内容</label>
+								<div class="layui-input-block">
+									<textarea class="layui-textarea layui-hide" name="motto" lay-verify="content" id="motto_content"><%= msg.content %></textarea>
+									<div class="layui-layedit">
+										<div class="layui-unselect layui-layedit-tool"><i class="layui-icon layedit-tool-b" title="加粗" lay-command="Bold" layedit-event="b" "=" "></i><i class="layui-icon layedit-tool-i " title="斜体 " lay-command="italic " layedit-event="i " "=""></i><i class="layui-icon layedit-tool-u" title="下划线" lay-command="underline" layedit-event="u" "=" "></i><i class="layui-icon layedit-tool-d " title="删除线 " lay-command="strikeThrough " layedit-event="d " "=""></i><span class="layedit-tool-mid"></span><i class="layui-icon layedit-tool-left" title="左对齐" lay-command="justifyLeft" layedit-event="left" "=" "></i><i class="layui-icon layedit-tool-center " title="居中对齐 " lay-command="justifyCenter " layedit-event="center " "=""></i><i class="layui-icon layedit-tool-right" title="右对齐" lay-command="justifyRight" layedit-event="right" "=" "></i><span class="layedit-tool-mid "></span><i class="layui-icon layedit-tool-link " title="插入链接 " layedit-event="link " "=""></i><i class="layui-icon layedit-tool-unlink layui-disabled" title="清除链接" lay-command="unlink" layedit-event="unlink" "=" "></i><i class="layui-icon layedit-tool-face " title="表情 " layedit-event="face " "=""></i><i class="layui-icon layedit-tool-image" title="图片" layedit-event="image"><input type="file" name="file"></i></div>
+										<div class="layui-layedit-iframe"><iframe id="LAY_layedit_1" name="LAY_layedit_1" textarea="news_content" frameborder="0" style="height: 535px;"></iframe></div>
+									</div>
+								</div>
+							</div>
+							<div class="layui-col-space10">
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">文章标签</label>
+									<div class="layui-input-block article-tag">
+										<% if(msg.belong == "文章"){ %>
+											<% if(msg.tag == null){ %>
+											<% }else{ %>
+												<% for(var i = 0; i < msg.tag.length; i ++ ){ %>
+													<div class="layui-input-inline" style="width: 100px; ">
+														<input class="layui-input" type="text" value="<%= msg.tag[i] %>" />
+														<p>x</p>
+													</div>
+												<% } %>
+											<% } %>
+										<%}%>
+										<a href="javascript:;" class="layui-btn layui-xs layui-input-inline add-tag">
+										  	<i class="layui-icon">&#xe608;</i> 添加标签
+										</a>
+									</div>
+								</div>
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">文章分类</label>
+									<div class="layui-input-block article-type">
+											<% for(var i = 0; i < type.length; i ++ ){ %>
+												<% if(msg.belong == "文章"){ %>
+														<div class=" layui-tab layui-tab-brief">
+															<input class="type-ipt" <% for(var j = 0; j < msg.type.length; j ++ ){ %>  <% if(msg.type[j] == type[i].content){ %> checked <% }else{  %><% } %><% } %> type="checkbox" lay-filter="articleType" name="" title="<%= type[i].content %>" />
+															<span id="<%= type[i]._id %>" class="layui-badge layui-bg-blue layui-icon learnTypeUpt">&#xe642;</span>
+															<a href="javasccript:;" id="<%= type[i]._id %>" class="layui-badge layui-icon learnTypeDel">&#xe640;</a>
+														</div>
+												<%}else{%>
+													<div class=" layui-tab layui-tab-brief">
+														<input class="type-ipt" type="checkbox" lay-filter="articleType" name="" title="<%= type[i].content %>" />
+														<span id="<%= type[i]._id %>" class="layui-badge layui-bg-blue layui-icon learnTypeUpt">&#xe642;</span>
+														<a href="javasccript:;" id="<%= type[i]._id %>" class="layui-badge layui-icon learnTypeDel">&#xe640;</a>
+													</div>
+												<% } %>
+											<% } %>
+									</div>
+								</div>
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">浏览权限</label>
+									<div class="layui-input-block">
+										<input type="radio" class="openness" name="openness" title="开放浏览" value="开放浏览" lay-skin="primary" checked <% if(msg.openness == "开放浏览"){%> checked <%}else{%> <%}%> lay-filter="openness">
+										<div class="layui-unselect layui-form-radio layui-form-radioed">
+											<i class="layui-anim layui-icon"></i>
+											<div>开放浏览</div>
+										</div>
+										<input type="radio" class="openness" name="openness" title="私密浏览" value="私密浏览" lay-skin="primary" <% if(msg.openness == "私密浏览"){%> checked <%}else{%> <%}%> lay-filter="openness" >
+										<div class="layui-unselect layui-form-radio">
+											<i class="layui-anim layui-icon"></i>
+											<div>私密浏览</div>
+										</div>
+									</div>
+								</div>
+								<div class="layui-form-item magt3">
+									<label class="layui-form-label">文章来源</label>
+									<div class="layui-input-block">
+										<input type="radio" class="source" name="source" title="原创" value="原创" lay-skin="primary" checked <% if(msg.source == "原创"){%> checked <%}else{%> <%}%> lay-filter="source">
+										<div class="layui-unselect layui-form-radio layui-form-radioed">
+											<i class="layui-anim layui-icon"></i>
+											<div>原创</div>
+										</div>
+										<input type="radio" class="source" name="source" title="转载" value="转载" lay-skin="primary" <% if(msg.source == "转载"){%> checked <%}else{%> <%}%> lay-filter="source" >
+										<div class="layui-unselect layui-form-radio">
+											<i class="layui-anim layui-icon"></i>
+											<div>转载</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="layui-center">
+								<a class="layui-btn layui-btn-sm" lay-filter="addBlog" lay-submit><i class="layui-icon">&#xe609;提交 </a>
+							</div>
+						</form>
+					</div>			
+					<div class="layui-col-xs3">
+						<div class="layui-form-item magt3">
+							<label class="layui-form-label">文章分类</label>
+							<div class="layui-input-block">
+								 <input type="text" name="type"  lay-verify="learnType" placeholder="请输入文章分类" autocomplete="off" class="layui-input type">
+							</div>
+						</div>
+						<div class="layui-center">
+							<a class="layui-btn layui-btn-sm" lay-filter="addLearnType" lay-submit><i class="layui-icon">&#xe609;增加 </a>
+						</div>
+					</div>
+			
+			</div>
+	
+	</div>
+	<!-- 底部 -->
+	<div class="layui-footer footer">
+		<p><span>copyright @2018 黄照阳</span>　</p>
+	</div>
+</div>
+<link rel="stylesheet" type="text/css" href="/css/learn.css"/>
+<script src="js/learn/learnAdd.js"></script>
+<%- include('../footer') %>
+<%- include('../components/errNotice') %>

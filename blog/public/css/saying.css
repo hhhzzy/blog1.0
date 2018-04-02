@@ -1,0 +1,211 @@
+.comment {
+	/*width: 680px;*/
+	margin: 20px auto;
+	position: relative;
+	background: #fff;
+	padding: 20px 50px 50px;
+	border: 1px solid #DDD;
+	border-radius: 5px;
+}
+.comment h3 {
+	height: 28px;
+	line-height: 28px
+}
+
+.com_form {
+	width: 100%;
+	position: relative
+}
+
+.input {
+	width: 98%;
+	height: 150px;
+	border: 1px solid #99cc66;
+	padding-left: 10px;
+	outline: none;
+	padding-top: 10px;
+	color: #666;
+}
+.com_form p {
+	height: 28px;
+	line-height: 28px;
+	position: relative;
+	margin-top: 10px;
+	border: 1px solid #99cc66;
+}
+
+span.emotion {
+	width: 42px;
+	height: 40px;
+	cursor: pointer;
+	color: red;
+	font-size: 30px;
+	color: #99cc66;
+	line-height: 24px;
+}
+
+span.emotion:hover {
+	background-position: 2px -28px
+}
+
+.qqFace {
+	margin-top: 4px;
+	background: #fff;
+	padding: 2px;
+	border: 1px #dfe6f6 solid;
+}
+
+.qqFace table td {
+	padding: 0px;
+}
+
+.qqFace table td img {
+	cursor: pointer;
+	border: 1px #fff solid;
+}
+
+.qqFace table td img:hover {
+	border: 1px #0066cc solid;
+}
+
+#show {
+	width: 770px;
+	margin: 20px auto;
+	background: #fff;
+	padding: 5px;
+	border: 1px solid #DDD;
+	vertical-align: top;
+	color: #666;
+}
+
+.sub_btn,.del_btn,.tj_btn{
+	position: absolute;
+	right: 0px;
+	top: 0;
+	display: inline-block;
+	zoom: 1;
+	/* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: baseline;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .6);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+	color: #e8f0de;
+	border: solid 1px #538312;
+	background: #64991e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#7db72f), to(#4e7d0e));
+	background: -moz-linear-gradient(top, #7db72f, #4e7d0e);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7db72f', endColorstr='#4e7d0e');
+	border: none;
+}
+.comment-list .plul .tj_btn{
+	left: 0;
+}
+.sub_btn:hover,
+.del_btn:hover{
+	background: #538018;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6b9d28), to(#436b0c));
+	background: -moz-linear-gradient(top, #6b9d28, #436b0c);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6b9d28', endColorstr='#436b0c');
+}
+.comment-list{padding-left: 60px;}
+.comment-list .pl{position: relative;margin-bottom: 20px;margin-top: 20px;}
+.comment-list .tx{
+    position: absolute;
+    top: 0px;
+    left: -60px;
+    width: 55px;
+    height: 50px;
+    background-image: url(../img/tx.png);
+    background-repeat: no-repeat;
+    background-position: right 10px;
+    padding-right: 12px;
+    border-radius: 10px;
+}
+.comment-list .reply{display: block;float: right;cursor: pointer;margin-right: 10px;}
+.comment-list a:hover{color: #333;}
+.comment-list a img{width: 55px;height: 55px;border-radius: 50%;}
+.comment-list .plbg{
+	padding: 0px 20px;
+    line-height: 26px;
+    overflow: hidden;
+    background-color: #fafafa;
+    color: #333;
+    border-bottom: 1px dashed #e8e8e8;
+}
+.comment-list .plbg .f{
+	float: left;
+}
+.comment-list .plbg .r{
+	float: right;
+}
+.comment-list .plul{
+	word-wrap: break-word;
+    width: 95%;
+    font-size: 14px;
+	padding: 10px 20PX;
+    background-color: #fafafa;
+    color: #333;
+    overflow: hidden;
+}
+.comment-list .plul p img{
+	display: inline-block;
+}
+.comment-list .hf{
+	float: right;
+    font-size: 14px;
+    line-height: 26px;
+    cursor: pointer;
+    color: #5d6c80;
+    color: #333;
+    margin-right:20px ;
+}
+.comment-list .info{
+	border:1px solid #e8e8e8;border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+	margin-left: 10px;
+}
+.comment-list .tx::after{
+	content: "";
+	display: block;
+	background-image: url("../images/tx.png");
+	width: 12px;
+	height: 18px;
+	position: absolute;
+	left: 58px;
+	top: 20px;
+}
+.comment-list .p2{
+	width: 75%;
+	margin-left: 17%;
+}
+.comment-list .p2 .tx{
+	left: -70px;
+}
+.comment-list p{
+	margin-bottom: 0;
+}
+.comment-list .p2 .tx::after{
+	left: 63px;
+}
+.comment-list .p2  .info{
+	margin-left: 5px;
+}
+.tips{
+	line-height: 60px;
+	background-color: #f2dede;
+	color: #a94442;
+	padding-left: 10px;
+	border-radius: 5px;
+	display: none;
+}

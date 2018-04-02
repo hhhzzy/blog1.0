@@ -1,0 +1,94 @@
+<%- include('header') %>
+<%- include('components/nav')  %>
+<article>
+  <div class="container">
+    <h2 class="ctitle"><b>给我留言</b> <span>最美不是下雨天，是曾与你走过雨的屋檐</span></h2>
+    <div class="gbook">
+			<div class="about_girl">
+		    	<span><a href="/"><img src="images/girl.jpg"></a></span>
+		      <p>当您驻足停留过，从此便注定我们的缘分。站在时间的尽头，我们已是朋友，前端的路上我再也不用一个人独自行走。</p>
+			</div>
+      <div class="about">
+        <!--<div id="fountainG">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </div>-->
+        <div class="tips">*登录过后才能评论</div>
+				<div class="comment">
+						<div class="com_form">
+								<form method="post" enctype="multipart/form-data">
+										<textarea class="input" id="saytext" name="saytext"></textarea>
+										<p>
+											<input type="button" class="sub_btn" value="提交">
+											<span class="emotion">☺</span>
+										</p>
+								</form>
+						</div>
+				</div>
+				<div class="comment-list">
+					<% for(var i = 0; i < data.length; i ++){ %>
+     				<div class="pl">
+	        		<div class="tx"><a href="javascript:;"><img src="images/woman.png"></a></div>
+		        		<div class="info">
+				        	<div class="plbg">
+				            		<div class="f z13"><%- data[i].author %></div>
+				                <div class="r"> <span class="z13"><%= dateFormat("ymdhms",data[i].created) %></span></div>
+									</div>
+			            <div class="plul"> 
+			            			<p><%- data[i].content %></p>
+		                 	  <!--<a class="hf">回复</a>-->
+			            </div>
+			        </div>
+	        	</div>
+	        	<% } %>
+				</div>
+    </div>
+  </div>
+  </aside>
+</article>
+
+<footer> Design by 黄照阳 <a href="/">备案中</a> </footer>
+
+<script>
+	if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){
+		(function(){
+			window.scrollReveal = new scrollReveal({reset: true});
+		})();
+	};
+	$(function() {
+			$('.emotion').qqFace({
+					id: 'facebox',
+					assign: 'saytext',
+					path: 'arclist/' //表情存放的路径
+			});
+			$(".sub_btn").click(function() {
+					var str = $("#saytext").val();
+					$("#show").html(replace_em(str));
+					//提交留言
+					$.post("singleSaying",{"content":replace_em(str)},function(data){
+							console.log(data);
+							if(data.msg == "没有登录"){
+								$(".tips").show();
+								return;
+							}
+					},"json")
+			});
+		});
+		//把图片的代码替换成图片
+		function replace_em(str) {
+			str = str.replace(/\</g, '&lt;');
+			str = str.replace(/\>/g, '&gt;');
+			str = str.replace(/\n/g, '<br/>');
+			str = str.replace(/\[em_([0-9]*)\]/g, '<img src="arclist/$1.gif" border="0" />');
+			return str;
+		}
+</script>
+<script src="js/jquery.qqFace.js"></script>
+<script src="js/jquery-browser.js"></script>
+<%- include('footer') %>

@@ -1,0 +1,33 @@
+.type{
+	width: 70%;;
+}
+.blog-right-bor{
+	border-right: 1px solid #cecece;
+}
+.layui-col-xs9{
+	padding-right: 2%;
+}
+.layui-tab{
+	margin: 0;
+	float: left;
+	margin-right:50px; ;
+}
+.layui-badge{
+	cursor: pointer;
+}
+.article-tag .layui-input-inline{
+	position: relative;
+}
+.article-tag p{
+	position: absolute;
+	right: -5px;
+	top: -5px;
+	cursor: pointer;
+	width: 15px;
+	height: 15px;
+	background-color: #cecece;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 15px;
+	color: #666;
+}

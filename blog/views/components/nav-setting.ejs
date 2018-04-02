@@ -1,0 +1,23 @@
+<div class="menu">
+	<p class="icon"></p>
+	<% if(user){ %>
+		<div class="nav-box">
+			<a class="item" href="">个人主页</a>
+			<div class="divider"></div>
+			<a class="item" href="/posts/create">发表文章</a>
+			<a class="item" href="/quit">登出</a>
+		</div>
+	<% }else{ %>
+		<div class="nav-box">
+			<a class="item" href="/login">登录</a>
+			<a class="item" href="/register">注册</a>
+		</div>
+	<% } %>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$(".icon").click(function(){
+			$(".nav-box").slideToggle();
+		})
+	})
+</script>
